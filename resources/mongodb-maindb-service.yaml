@@ -6,10 +6,10 @@ metadata:
     name: mongod-shardX
 spec:
   ports:
-  - port: 27017 # 서비스가 생성할 Port
-    targetPort: 27017 # 서비스가 접근할 Pod의 Port (기본: port랑 동일)
+  - port: 27017
+    targetPort: 27017
   clusterIP: None
-  selector: # 서비스가 접근할 Pod의 label 조건
+  selector:
     role: mongodb-shardX
 ---
 apiVersion: apps/v1
