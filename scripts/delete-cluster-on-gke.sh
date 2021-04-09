@@ -55,5 +55,5 @@ do
     gcloud -q compute disks delete pd-ssd-disk-20g-$i --zone=$ZONE
 done
 
-# gcloud -q container clusters delete "alooo-data-real"
+# gcloud -q container clusters delete "<CLUSTER_NAME>"
 
