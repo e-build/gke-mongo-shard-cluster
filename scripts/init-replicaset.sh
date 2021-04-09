@@ -57,7 +57,7 @@ kubectl exec mongod-configdb-0 -c mongod-configdb-container -- mongo --eval "rs.
 });"
 
 
-
+# ReplicaSet은 PSS(Primary-Secondary-Secondary)로 구성
 for i in $(seq 1 3) ; do
   kubectl exec mongod-shard"${i}"-0 -c mongod-shard"${i}"-container -- mongo --eval "rs.initiate({
   _id: 'Shard${i}ReplicaSet',
