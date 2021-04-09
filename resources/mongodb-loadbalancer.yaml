@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-loadbalancer
+  labels:
+    name: mongos-router
+spec:
+  selector:
+    role: mongos-router
+  ports:
+    - port: 30000
+      protocol: TCP
+      targetPort: 27017
+  type: LoadBalancer
