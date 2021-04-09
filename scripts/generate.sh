@@ -3,7 +3,7 @@
 # Script to deploy a Kubernetes project with a StatefulSet running a MongoDB Sharded Cluster, to GKE.
 ##
 
-NEW_PASSWORD="0401ahdlfks"
+NEW_PASSWORD="mongo-admin-password"
 ZONE="asia-northeast3-a"
 NAMESPACE="mongo"
 
@@ -148,7 +148,7 @@ sleep 3
 # 11. Admin root 계정 생성
 echo
 echo "Admin user 생성"
-kubectl exec mongos-router-0 -c mongos-container -- mongo --eval 'db.getSiblingDB("admin").createUser({user:"passmate",pwd:"${NEW_PASSWORD}",roles:[{role:"root",db:"admin"}]});'
+kubectl exec mongos-router-0 -c mongos-container -- mongo --eval 'db.getSiblingDB("admin").createUser({user:"mongo-admin",pwd:"${NEW_PASSWORD}",roles:[{role:"root",db:"admin"}]});'
 echo
 
 # 12. 로드밸런서 생성 (외부접속)
