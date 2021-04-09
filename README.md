@@ -6,9 +6,8 @@
 
 다음 라이브러리들이 작업환경에 사전에 정의되어 있어야 합니다.
 
-1. Google Compute Platform(GCP) 트래블라이 프로젝트에 접근할 수 있는 계정이 필요합니다. 
-2. GCP’s client CLI 툴인 [gcloud](https://cloud.google.com/sdk/docs/quickstarts) SDK가 로컬의 작업환경에 설치되어 있어야 합니다.  
-3. 작업 프로젝트 설정 및 접속을 위해 다음 과정과 같은 gcloud 초기화가 필요합니다.
+1. GCP’s client CLI 툴인 [gcloud](https://cloud.google.com/sdk/docs/quickstarts) SDK가 로컬의 작업환경에 설치되어 있어야 합니다.  
+2. 작업 프로젝트 설정 및 접속을 위해 다음 과정과 같은 gcloud 초기화가 필요합니다.
 
     ```
     $ gcloud init
@@ -47,7 +46,7 @@
    ```
    $ kubectl get all
    $ kubectl get pods
-   $ kubectl exec -it svc/mongos-router-service -- mongo -u passmate 
+   $ kubectl exec -it svc/mongos-router-service -- mongo -u mongo-admin
    > sh.status()
    ```
 
@@ -58,7 +57,7 @@
 
     $ kubectl exec -it mongos-router-0 -c mongos-container bash
     $ mongo
-    > db.getSiblingDB('admin').auth("main_admin", "abc123");
+    > db.getSiblingDB('admin').auth("mongo-admin", "mongo-admin-password");
     > sh.enableSharding("test");
     > sh.shardCollection("test.testcoll", {"myfield": 1});
     > use test;
@@ -71,7 +70,7 @@
 **Important:** GKE 구성요소 뿐만 아니라 compute disks 도 함께 삭제하기 때문에 기존 mongoDB의 데이터들을 백업한 이후 진행하시는 것이 좋습니다.
 GKE의 일부 resource만 제거길 원한다면 delete-cluster-on-gke.sh 스크립트를 참고해주세요.
 
-    $ ./delete-cluster-on-gke.sh
+    $ ./delete.sh
 
 완전히 제거되었는 지 여부는 [Google Cloud Platform Console](https://console.cloud.google.com) 에서 확인할 수 있습니다.
 
