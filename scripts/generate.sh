@@ -110,18 +110,18 @@ echo "configdb & shards containers are now running ($(date))"
 sh ./init-replicaset.sh
 
 # ReplicaSet 으로 초기화 대기... TODO: 이거 왜 안되는 지 확인 필요
-echo "Waiting for all the MongoDB ConfigDB & Shards Replica Sets to initialise..."
-kubectl exec mongod-configdb-0 -c mongod-configdb-container -- mongo --quiet --eval 'while ( rs.status().hasOwnProperty("myState") ) { print("."); sleep(1000); };'
-kubectl exec mongod-configdb-0 -c mongod-configdb-container -- mongo --quiet --eval 'while ( rs.status().hasOwnProperty("myState") ) { print("."); sleep(1000); };'
-for i in $(seq 1 3) ;
-do
-  kubectl exec mongod-shard"${i}"-0 -c mongod-shard"${i}"-container -- mongo --quiet --eval 'while ( rs.status().hasOwnProperty("myState") ) { print("."); sleep(1000); };'
-done
-sleep 2
-echo "MongoDB Replica Sets 초기화 완료"
-echo
+#echo "Waiting for all the MongoDB ConfigDB & Shards Replica Sets to initialise..."
+#kubectl exec mongod-configdb-0 -c mongod-configdb-container -- mongo --quiet --eval 'while ( rs.status().hasOwnProperty("myState") ) { print("."); sleep(1000); };'
+#kubectl exec mongod-configdb-0 -c mongod-configdb-container -- mongo --quiet --eval 'while ( rs.status().hasOwnProperty("myState") ) { print("."); sleep(1000); };'
+#for i in $(seq 1 3) ;
+#do
+#  kubectl exec mongod-shard"${i}"-0 -c mongod-shard"${i}"-container -- mongo --quiet --eval 'while ( rs.status().hasOwnProperty("myState") ) { print("."); sleep(1000); };'
+#done
+#sleep 2
+#echo "MongoDB Replica Sets 초기화 완료"
+#echo
 
-# 9. Router StatefulSet(replica 3) 으로 배포 TODO: mongo-router.conf 에서 configDB 호스트를 세팅하기 때문에 configDB 가 다 뜨고 나서 router를 띄워야 할지도 모르겠다.
+# 9. Router StatefulSet(replica 3) 으로 배포
 echo
 echo "[GKE] GKE StatefulSet & Service 배포합니다. :: Router Server "
 kubectl apply -f ../resources/mongodb-mongos-service.yaml
