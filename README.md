@@ -6,8 +6,10 @@
 
 다음 라이브러리들이 작업환경에 사전에 정의되어 있어야 합니다.
 
-1. GCP’s client CLI 툴인 [gcloud](https://cloud.google.com/sdk/docs/quickstarts) SDK가 로컬의 작업환경에 설치되어 있어야 합니다.  
-2. 작업 프로젝트 설정 및 접속을 위해 다음 과정과 같은 gcloud 초기화가 필요합니다.
+1. 원하는 노드사양으로 정의된 Cluster가 생성되어 있어야 합니다. 
+2. GCP’s client CLI 툴인 [gcloud](https://cloud.google.com/sdk/docs/quickstarts) SDK가 로컬의 작업환경에 설치되어 있어야 합니다.  
+3. 작업 프로젝트 설정 및 접속을 위해 다음 과정과 같은 gcloud 초기화가 필요합니다.
+4. kubectl을 사용하여 구축을 진행합니다. MongoDB를 구축하고자하는 클러스터의 컨텍스트에 대한 접근 권한이 필요합니다.
 
     ```
     $ gcloud init
