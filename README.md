@@ -1,4 +1,4 @@
-# Passmate MongoDB Sharded Cluster on GKE 
+# MongoDB Sharded Cluster on GKE 
 
 ## 구동
 
